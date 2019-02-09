@@ -308,6 +308,21 @@
         ```
         are both added to `Pipfile`, `Pipfile.lock` and installed in virtual environment. 
 1. Running your scripts
+
+    Aside of pipenv shell, there is another convinient way of running programs in the virtual environment. 
+
+    Most basic one is to use `run` command:
+    ```
+    > pipenv run python -m flask run
+    ```
+    
+    __Handy tip:__ 
+    
+    ```
+    > pipenv run python
+    ``` 
+    This would start python repl in the `venv` context, so you can tinker
+    through your ideas, with dependency managed by pipenv.
     
     During development of mid- and huge-size project it could be handy 
     to prepare some usefull scritps like:
@@ -387,3 +402,48 @@
     Combining `.env` and `pipenv run` command could be very power full 
     tool in your hands to make your terminal part of work simply joy.
 
+1. Separation of production and development dependencies.
+    
+    As you probably already noticed in `Pipfile` there are two packages sections: 
+
+    ```
+    [packages]
+    Flask = "*"
+    "requests2" = "*"
+    
+    [dev-packages]
+    ``` 
+
+    Until now we were using only first section, but let's consider having `pytest` library necessity. Before pipenv, there was a pattern of creating `requirements.txt` and `dev-requirements.txt`
+    files and installing them alternativelly with pip. 
+
+    But as you can predict, pipenv deals with it in quite elegant way. 
+    To install development only packages simply define them in `[dev-packaes]` section and install with:
+    ```
+    > pipenv install --dev
+    ```
+    or even shorter:
+    ```
+    > pipenv install pytest --dev
+    ```
+
+1. Migration back and forth
+
+    Currently the good practcie is to keep both `Pipfile` and `requirments.txt` files in your project, especially in open-source or bigger scale projects with multiple developers. 
+
+    If you would start `Pipfile` following snippets are going to be 
+    handy.
+    
+      ```
+      > pipenv lock -r > requirements.txt
+      > pipenv lock -r -d > dev-requirements.txt
+      ``` 
+    It's creating `requirments.txt` file for you based on `Pipfile.lock` definitions.
+
+    To start using pipenv in legacy `pip` project you can try following: 
+    
+      ```
+      pipenv install -r requirments.txt
+      #or
+      pipenv install --dev -r dev-requirements.txt
+      ```
