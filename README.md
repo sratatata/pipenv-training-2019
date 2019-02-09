@@ -447,3 +447,11 @@
       #or
       pipenv install --dev -r dev-requirements.txt
       ```
+
+## Sources
+I've quoted few times:
+* https://packaging.python.org/tutorials/installing-packages/
+* https://pipenv.readthedocs.io/en/latest/
+* https://realpython.com/pipenv-guide/
+
+Big thanks to authors.
