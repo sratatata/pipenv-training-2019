@@ -339,3 +339,51 @@
     ``` 
     That's it. 
 
+1. Set environment variables in `.env` file 
+
+    Pipenv offers also convinient way to automatically set environment  variables within the project scope (pipenv shell).
+
+    Let's move `FLASK_APP`, so it would be easy to set in single place, and also make `Pipfile` script a little cleaner.
+    
+    Start with creating `.env` file in project root directory. 
+    
+    ```
+    FLASK_APP=hello.py 
+    ```
+
+    do not forget to remove it from the `Pipfile`. 
+    ```
+    [scripts]
+    server = "flask run"
+    ```
+    Notice convinient side effect is that previous shell specific notation is now not necessary.  
+
+    Let's try it out.
+
+    ```
+    > pipenv shell
+    Loading .env environment variables…
+    
+    > echo $FLASK_APP
+
+    hello.py
+    ```
+
+    now press `CTRL-D` or type `exit` to quite pipenv shell, and try to run server.
+    ```
+    > pipenv run server
+
+    Loading .env environment variables…
+    * Tip: There are .env files present. Do "pip install python-dotenv" to use them.
+    * Serving Flask app "hello.py"
+    * Environment: production
+      WARNING: Do not use the development server in a production environment.
+      Use a production WSGI server instead.
+    * Debug mode: off
+    * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+
+    ```
+
+    Combining `.env` and `pipenv run` command could be very power full 
+    tool in your hands to make your terminal part of work simply joy.
+
