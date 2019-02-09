@@ -243,6 +243,7 @@
     Try to run our hello world again:
     ```
     > FLASK_APP=hello.py flask run   
+    
     # OUTPUT: 
     * Serving Flask app "hello.py"
     * Environment: production
@@ -306,3 +307,35 @@
         "requests2" = "*"
         ```
         are both added to `Pipfile`, `Pipfile.lock` and installed in virtual environment. 
+1. Running your scripts
+    
+    During development of mid- and huge-size project it could be handy 
+    to prepare some usefull scritps like:
+    * depolyment script
+    * packaging
+    * testing
+    * cleaning 
+    etc. 
+
+    Let's assume that this `FLASK_APP=hello.py flask run` is not our 
+    favourite command, so it would be nice to just type:
+    
+    ```
+    > pipenv run server
+    ``` 
+    
+    Let's just add in our `Pipfile`:
+
+    ```
+    [scripts]
+    
+    #FISH:
+    # I'm using Fish, `env` is used in fish shell   
+    server = "env FLASK_APP=hello.py flask run"
+
+    #BASH: 
+    #server = "FLASK_APP=hello.py flask run"
+
+    ``` 
+    That's it. 
+

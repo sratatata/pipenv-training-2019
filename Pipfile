@@ -3,6 +3,12 @@ url = "https://pypi.python.org/simple"
 verify_ssl = true
 name = "pypi"
 
+[scripts]
+# env is used in fish shell   
+server = "env FLASK_APP=hello.py flask run"
+
+#BASH: server = "FLASK_APP=hello.py flask run"
+
 [dev-packages]
 
 [packages]
