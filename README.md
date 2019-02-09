@@ -1,6 +1,8 @@
 # pipenv training 2019
+## Presentation
+[Slides link](https://docs.google.com/presentation/d/1MP1DaIDY3ilyip0AnFQqEOcVocT94DiN70GtV8GmKms/edit?usp=sharing)
 
-# Excercise
+## Tutorial
 
 1. Create new project
     ```
